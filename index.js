@@ -1,5 +1,3 @@
-import { BookingTools } from './node_modules/tap-booking-ui-lib/src/index.js';
-
 window.state = {
   checkIn: null,
   checkOut: null,
@@ -75,15 +73,21 @@ const SERVICES = [
 const SLOTS = ['10:00 hrs', '11:30 hrs', '14:00 hrs', '16:30 hrs', '18:00 hrs'];
 
 window.navTo = function(viewId) {
-  document.getElementById('view-search').classList.add('hidden');
-  document.getElementById('view-results').classList.add('hidden');
-  document.getElementById('view-confirm').classList.add('hidden');
+  const vSearch = document.getElementById('view-search');
+  const vResults = document.getElementById('view-results');
+  const vConfirm = document.getElementById('view-confirm');
+
+  if (vSearch) vSearch.classList.add('hidden');
+  if (vResults) vResults.classList.add('hidden');
+  if (vConfirm) vConfirm.classList.add('hidden');
+
   const target = document.getElementById(viewId);
   if (target) target.classList.remove('hidden');
 };
 
 window.showToast = function(message, type = 'info') {
   const container = document.getElementById('toast-container');
+  if (!container) return;
   const toast = document.createElement('div');
   const bgColor = type === 'error' ? 'bg-red-600' : 'bg-aetheria-jungle';
   toast.className = `${bgColor} text-white px-5 py-3 rounded-xl shadow-xl text-sm font-semibold flex items-center space-x-3 transition-all transform translate-y-2 opacity-0`;
@@ -94,7 +98,8 @@ window.showToast = function(message, type = 'info') {
 };
 
 window.toggleLoginModal = function() {
-  document.getElementById('login-modal').classList.toggle('hidden');
+  const modal = document.getElementById('login-modal');
+  if (modal) modal.classList.toggle('hidden');
 };
 
 window.loginWithGoogle = function() {
@@ -105,7 +110,8 @@ window.loginWithGoogle = function() {
 };
 
 window.loginWithEmail = function() {
-  const email = document.getElementById('login-email').value;
+  const emailInput = document.getElementById('login-email');
+  const email = emailInput ? emailInput.value : '';
   if (!email) return showToast('Ingresa tu correo', 'error');
   state.user = { name: email.split('@')[0], email };
   updateUserUI();
@@ -115,7 +121,7 @@ window.loginWithEmail = function() {
 
 function updateUserUI() {
   const container = document.getElementById('user-nav-container');
-  if (state.user) {
+  if (state.user && container) {
     container.innerHTML = `
       <div class="flex items-center space-x-3 bg-emerald-800/60 px-4 py-1.5 rounded-xl text-xs font-semibold">
         <i class="fa-solid fa-user-check text-aetheria-gold"></i>
@@ -126,9 +132,17 @@ function updateUserUI() {
 }
 
 window.handleSearch = function() {
-  const checkIn = document.getElementById('checkin').value;
-  const checkOut = document.getElementById('checkout').value;
-  const guests = parseInt(document.getElementById('guests').value);
+  const checkInElem = document.getElementById('checkin');
+  const checkOutElem = document.getElementById('checkout');
+  const guestsElem = document.getElementById('guests');
+
+  if (!checkInElem || !checkOutElem || !guestsElem) {
+    return showToast('No se encontraron los campos del formulario.', 'error');
+  }
+
+  const checkIn = checkInElem.value;
+  const checkOut = checkOutElem.value;
+  const guests = parseInt(guestsElem.value) || 1;
 
   if (!checkIn || !checkOut) return showToast('Selecciona fechas válidas.', 'error');
 
@@ -145,7 +159,10 @@ window.handleSearch = function() {
   state.guests = guests;
   state.nights = Math.ceil(Math.abs(outDate - inDate) / (1000 * 60 * 60 * 24));
 
-  document.getElementById('search-summary').innerText = `${state.nights} noche(s) | ${guests} huésped(es) (${checkIn} al ${checkOut})`;
+  const summaryElem = document.getElementById('search-summary');
+  if (summaryElem) {
+    summaryElem.innerText = `${state.nights} noche(s) | ${guests} huésped(es) (${checkIn} al ${checkOut})`;
+  }
 
   renderVillas();
   renderServices();
@@ -173,7 +190,6 @@ function renderVillas() {
     </div>
   `).join('');
 
-  // Auto-selecciona la primera villa por defecto
   selectVilla(1);
 }
 
@@ -240,7 +256,6 @@ window.selectSlot = function(slot) {
 };
 
 window.goToConfirmScreen = function() {
-  // Garantía: Si no había seleccionado villa, asignamos la primera automáticamente
   if (!state.selectedRoom) {
     state.selectedRoom = ROOMS[0];
   }
@@ -284,15 +299,22 @@ window.calculateTotals = function() {
   const subtotal = roomTotal + servicesTotal;
   const total = Math.max(0, subtotal - state.discount);
 
-  document.getElementById('summary-nights').innerText = state.nights;
-  document.getElementById('summary-room').innerText = `$${roomTotal} USD`;
-  document.getElementById('summary-services').innerText = `$${servicesTotal} USD`;
-  document.getElementById('summary-discount').innerText = `-$${state.discount} USD`;
-  document.getElementById('summary-total').innerText = `$${total} USD`;
+  const elemNights = document.getElementById('summary-nights');
+  const elemRoom = document.getElementById('summary-room');
+  const elemServices = document.getElementById('summary-services');
+  const elemDiscount = document.getElementById('summary-discount');
+  const elemTotal = document.getElementById('summary-total');
+
+  if (elemNights) elemNights.innerText = state.nights;
+  if (elemRoom) elemRoom.innerText = `$${roomTotal} USD`;
+  if (elemServices) elemServices.innerText = `$${servicesTotal} USD`;
+  if (elemDiscount) elemDiscount.innerText = `-$${state.discount} USD`;
+  if (elemTotal) elemTotal.innerText = `$${total} USD`;
 };
 
 window.applyCoupon = function() {
-  const code = document.getElementById('coupon-code').value.trim().toUpperCase();
+  const couponInput = document.getElementById('coupon-code');
+  const code = couponInput ? couponInput.value.trim().toUpperCase() : '';
   if (code === 'AETHERIA10') {
     state.discount = 50;
     showToast('¡Cupón de $50 USD aplicado!', 'info');
@@ -306,24 +328,20 @@ window.finalizeBooking = function() {
   const folio = 'AETH-' + Math.floor(100000 + Math.random() * 900000);
   showToast('¡Reserva confirmada con éxito!', 'info');
 
-  document.getElementById('confirm-details').innerHTML = `
-    <div class="text-center py-4">
-      <i class="fa-solid fa-circle-check text-aetheria-gold text-5xl mb-3"></i>
-      <h3 class="text-2xl font-bold text-aetheria-emerald">¡Reserva Confirmada!</h3>
-      <p class="text-xs text-gray-500 font-mono mt-1">Folio de confirmación: <span class="font-bold text-slate-800">${folio}</span></p>
-    </div>
-    <div class="border-t border-gray-100 pt-4 space-y-2 text-sm text-gray-700">
-      <p><strong>Huésped:</strong> ${state.user ? state.user.name : 'Cliente Invitado'}</p>
-      <p><strong>Villa:</strong> ${state.selectedRoom.name}</p>
-      <p><strong>Fechas:</strong> ${state.checkIn} al ${state.checkOut} (${state.nights} noches)</p>
-      <p><strong>Horario Check-In:</strong> ${state.selectedSlot}</p>
-    </div>
-  `;
+  const detailsContainer = document.getElementById('confirm-details');
+  if (detailsContainer) {
+    detailsContainer.innerHTML = `
+      <div class="text-center py-4">
+        <i class="fa-solid fa-circle-check text-aetheria-gold text-5xl mb-3"></i>
+        <h3 class="text-2xl font-bold text-aetheria-emerald">¡Reserva Confirmada!</h3>
+        <p class="text-xs text-gray-500 font-mono mt-1">Folio de confirmación: <span class="font-bold text-slate-800">${folio}</span></p>
+      </div>
+      <div class="border-t border-gray-100 pt-4 space-y-2 text-sm text-gray-700">
+        <p><strong>Huésped:</strong> ${state.user ? state.user.name : 'Cliente Invitado'}</p>
+        <p><strong>Villa:</strong> ${state.selectedRoom.name}</p>
+        <p><strong>Fechas:</strong> ${state.checkIn} al ${state.checkOut} (${state.nights} noches)</p>
+        <p><strong>Horario Check-In:</strong> ${state.selectedSlot}</p>
+      </div>
+    `;
+  }
 };
-
-new BookingTools({
-  barbers: ROOMS,
-  services: SERVICES,
-  slots: SLOTS,
-  storagePrefix: 'aetheria-eco-resort'
-});
