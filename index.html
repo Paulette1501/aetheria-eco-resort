@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Overlook Resort & Spa | Reserva Tu Experiencia Exclusiva</title>
+  <title>Aetheria Eco-Resort & Spa | Reserva Tu Experiencia Exclusiva</title>
 
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
       theme: {
         extend: {
           colors: {
-            overlook: {
+            aetheria: {
               blue: '#2563eb',
               darkblue: '#1d4ed8',
               deepblue: '#1e3a8a',
@@ -52,11 +52,11 @@
 <body class="font-sans text-slate-800 min-h-screen flex flex-col justify-between">
 
   <!-- NAVBAR -->
-  <header class="w-full bg-overlook-deepblue/90 backdrop-blur-md text-white sticky top-0 z-40 shadow-xl border-b border-blue-900/40">
+  <header class="w-full bg-aetheria-deepblue/90 backdrop-blur-md text-white sticky top-0 z-40 shadow-xl border-b border-blue-900/40">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center space-x-3 cursor-pointer" onclick="resetToStep1()">
-        <i class="fa-solid fa-water text-blue-400 text-2xl"></i>
-        <span class="text-2xl font-bold tracking-wider">OVERLOOK <span class="text-blue-400 text-xs uppercase tracking-widest block font-medium">Resort & Spa</span></span>
+        <i class="fa-solid fa-leaf text-blue-400 text-2xl"></i>
+        <span class="text-2xl font-bold tracking-wider">AETHERIA <span class="text-blue-400 text-xs uppercase tracking-widest block font-medium">Eco-Resort & Spa</span></span>
       </div>
       <div id="user-nav-container">
         <div id="user-badge" class="hidden flex items-center space-x-2 bg-blue-800/80 px-4 py-1.5 rounded-xl text-xs font-semibold">
@@ -73,28 +73,36 @@
     <!-- PASO 1: FECHAS Y HUÉSPEDES -->
     <section id="step-1" class="w-full glass-panel rounded-3xl p-8 shadow-2xl transition-all">
       <div class="text-center mb-8">
-        <span class="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Paso 1 de 5</span>
-        <h1 class="text-3xl md:text-4xl font-extrabold text-overlook-deepblue mt-3">Selecciona tus Fechas y Huéspedes</h1>
+        <!-- ESLOGAN PRINCIPAL ARRIBA -->
+        <p class="text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3">Eco Luxury Resort & Sanctuary</p>
+        
+        <!-- BADGE PASO 1 -->
+        <span class="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-3">Paso 1 de 5</span>
+        
+        <!-- TÍTULO DE LA SECCIÓN -->
+        <h1 class="text-3xl md:text-4xl font-extrabold text-aetheria-deepblue">Selecciona tus Fechas y Huéspedes</h1>
+        
+        <!-- DESCRIPCIÓN -->
         <p class="text-gray-600 mt-2 text-sm">Ingresa los días de tu estancia para verificar disponibilidad.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-white/80 p-6 rounded-2xl border border-blue-100 shadow-sm">
         <div>
-          <label class="block text-xs font-bold text-overlook-deepblue uppercase mb-2">
+          <label class="block text-xs font-bold text-aetheria-deepblue uppercase mb-2">
             <i class="fa-solid fa-calendar-plus text-blue-600 mr-1"></i> Llegada
           </label>
           <input type="date" id="checkin" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none">
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-overlook-deepblue uppercase mb-2">
+          <label class="block text-xs font-bold text-aetheria-deepblue uppercase mb-2">
             <i class="fa-solid fa-calendar-minus text-blue-600 mr-1"></i> Salida
           </label>
           <input type="date" id="checkout" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none">
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-overlook-deepblue uppercase mb-2">
+          <label class="block text-xs font-bold text-aetheria-deepblue uppercase mb-2">
             <i class="fa-solid fa-users text-blue-600 mr-1"></i> Huéspedes
           </label>
           <select id="guests" class="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-blue-600 focus:outline-none">
@@ -117,7 +125,7 @@
     <section id="step-2" class="w-full glass-panel rounded-3xl p-8 shadow-2xl hidden">
       <div class="text-center mb-6">
         <span class="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Paso 2 de 5</span>
-        <h2 class="text-3xl font-extrabold text-overlook-deepblue mt-2">Elige tu Habitación o Villa</h2>
+        <h2 class="text-3xl font-extrabold text-aetheria-deepblue mt-2">Elige tu Habitación o Villa</h2>
         <p id="search-summary" class="text-xs text-gray-500 mt-1"></p>
       </div>
 
@@ -134,7 +142,7 @@
     <section id="step-3" class="w-full glass-panel rounded-3xl p-8 shadow-2xl hidden">
       <div class="text-center mb-6">
         <span class="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Paso 3 de 5</span>
-        <h2 class="text-3xl font-extrabold text-overlook-deepblue mt-2">¿Deseas agregar servicios adicionales?</h2>
+        <h2 class="text-3xl font-extrabold text-aetheria-deepblue mt-2">¿Deseas agregar servicios adicionales?</h2>
         <p class="text-xs text-gray-500 mt-1">Opcional. Haz clic en los servicios que quieras agregar a tu estancia.</p>
       </div>
 
@@ -155,7 +163,7 @@
       <div class="text-center mb-6">
         <span class="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Paso 4 de 5</span>
         <i class="fa-solid fa-circle-user text-blue-600 text-4xl block my-3"></i>
-        <h3 class="text-2xl font-bold text-overlook-deepblue">Inicia Sesión para Confirmar</h3>
+        <h3 class="text-2xl font-bold text-aetheria-deepblue">Inicia Sesión para Confirmar</h3>
         <p class="text-xs text-gray-500 mt-1">Necesitamos tus datos para vincular la reservación a tu nombre.</p>
       </div>
 
@@ -195,14 +203,14 @@
     <section id="step-5" class="w-full glass-panel rounded-3xl p-8 shadow-2xl hidden">
       <div class="text-center mb-6">
         <span class="bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Paso 5 de 5</span>
-        <h2 class="text-3xl font-extrabold text-overlook-deepblue mt-2">Resumen Final de tu Reserva</h2>
+        <h2 class="text-3xl font-extrabold text-aetheria-deepblue mt-2">Resumen Final de tu Reserva</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div id="confirm-details" class="md:col-span-2 bg-white/90 p-6 rounded-2xl border border-blue-100 shadow-sm space-y-4">
         </div>
 
-        <div class="bg-overlook-deepblue text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+        <div class="bg-aetheria-deepblue text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between">
           <div>
             <h3 class="text-lg font-bold border-b border-blue-800 pb-2 mb-4 text-blue-300">
               <i class="fa-solid fa-receipt mr-2"></i>Desglose en MXN
@@ -234,7 +242,7 @@
             <div class="mt-6">
               <label class="block text-xs font-medium text-gray-300 mb-1">¿Tienes cupón?</label>
               <div class="flex space-x-2">
-                <input type="text" id="coupon-code" placeholder="OVERLOOK10" class="w-full bg-blue-900/60 border border-blue-700 rounded-lg px-3 py-1.5 text-xs text-white uppercase focus:outline-none">
+                <input type="text" id="coupon-code" placeholder="AETHERIA10" class="w-full bg-blue-900/60 border border-blue-700 rounded-lg px-3 py-1.5 text-xs text-white uppercase focus:outline-none">
                 <button onclick="applyCoupon()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold">Aplicar</button>
               </div>
             </div>
@@ -251,8 +259,8 @@
 
   <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-3"></div>
 
-  <footer class="w-full bg-overlook-deepblue text-white/70 py-6 text-center text-xs border-t border-blue-900">
-    <p>© 2026 Overlook Resort & Spa. Todos los derechos reservados.</p>
+  <footer class="w-full bg-aetheria-deepblue text-white/70 py-6 text-center text-xs border-t border-blue-900">
+    <p>© 2026 Aetheria Eco-Resort & Spa. Todos los derechos reservados.</p>
   </footer>
 
   <!-- LÓGICA EN JAVASCRIPT -->
@@ -268,30 +276,29 @@
       user: null
     };
 
-    // Precios adaptados a PESOS MEXICANOS (MXN)
     const ROOMS = [
       {
         id: 1,
-        name: 'Suite Ocean Overlook',
+        name: 'Villa Selva Tropical',
         capacity: '2 Huéspedes',
         price: 6500,
         img: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
-        amenities: ['Vista al mar', 'Cama King Size', 'Jacuzzi privado', 'Wi-Fi de alta velocidad']
+        amenities: ['Vista a la naturaleza', 'Cama King Size', 'Jacuzzi privado', 'Wi-Fi de alta velocidad']
       },
       {
         id: 2,
-        name: 'Villa Imperial Beachfront',
+        name: 'Suite Overwater Esmeralda',
         capacity: '4 Huéspedes',
         price: 11800,
         img: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80',
-        amenities: ['Piscina privada', '2 Camas King', 'Acceso directo a playa', 'Mayordomo']
+        amenities: ['Acceso directo al agua', '2 Camas King', 'Terraza privada', 'Servicio de Mayordomo']
       }
     ];
 
     const SERVICES = [
-      { id: 101, name: 'Spa & Masaje Holístico', price: 2200, img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=400&q=80' },
-      { id: 102, name: 'Cena Gourmet a la Playa', price: 3400, img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80' },
-      { id: 103, name: 'Tour Snorkel VIP', price: 1500, img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80' }
+      { id: 101, name: 'Masaje Holístico Spa', price: 2200, img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=400&q=80' },
+      { id: 102, name: 'Cena Gourmet Privada', price: 3400, img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80' },
+      { id: 103, name: 'Tour Snorkel y Kayak', price: 1500, img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80' }
     ];
 
     function formatMoneyMXN(amount) {
@@ -357,7 +364,7 @@
         <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-md hover:shadow-xl transition">
           <img src="${r.img}" class="h-48 w-full object-cover">
           <div class="p-5">
-            <h4 class="font-bold text-lg text-overlook-deepblue">${r.name}</h4>
+            <h4 class="font-bold text-lg text-aetheria-deepblue">${r.name}</h4>
             <p class="text-xs text-gray-500 my-2"><i class="fa-solid fa-users mr-1"></i> ${r.capacity}</p>
             <div class="flex justify-between items-center mt-4">
               <span class="text-base font-bold text-blue-600">${formatMoneyMXN(r.price)} / noche</span>
@@ -442,7 +449,7 @@
         <div class="flex items-center space-x-4 border-b border-gray-100 pb-4">
           <img src="${state.selectedRoom.img}" class="h-20 w-28 object-cover rounded-xl shadow-sm">
           <div>
-            <h4 class="font-bold text-xl text-overlook-deepblue">${state.selectedRoom.name}</h4>
+            <h4 class="font-bold text-xl text-aetheria-deepblue">${state.selectedRoom.name}</h4>
             <p class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-calendar mr-1"></i> ${state.nights} noche(s) · ${state.guests} huésped(es)</p>
             <p class="text-xs text-blue-600 font-bold mt-1"><i class="fa-solid fa-user mr-1"></i> Titular: ${state.user ? state.user.name : 'No registrado'}</p>
           </div>
@@ -465,7 +472,7 @@
 
     window.applyCoupon = function() {
       const code = document.getElementById('coupon-code').value.trim().toUpperCase();
-      if (code === 'OVERLOOK10') {
+      if (code === 'AETHERIA10') {
         state.discount = 1000;
         showToast('¡Cupón de $1,000 MXN aplicado con éxito!', 'info');
       } else {
@@ -475,13 +482,13 @@
     };
 
     window.finalizeBooking = function() {
-      const folio = 'OVL-' + Math.floor(100000 + Math.random() * 900000);
+      const folio = 'AETH-' + Math.floor(100000 + Math.random() * 900000);
       showToast('¡Reserva confirmada exitosamente!', 'info');
 
       document.getElementById('confirm-details').innerHTML = `
         <div class="text-center py-6">
           <i class="fa-solid fa-circle-check text-emerald-500 text-5xl mb-3"></i>
-          <h3 class="text-2xl font-bold text-overlook-deepblue">¡Reserva Confirmada!</h3>
+          <h3 class="text-2xl font-bold text-aetheria-deepblue">¡Reserva Confirmada!</h3>
           <p class="text-xs text-gray-500 mt-1">Folio de confirmación: <span class="font-bold text-slate-800">${folio}</span></p>
           <p class="text-xs text-emerald-600 font-bold mt-2">Hemos enviado los detalles a ${state.user.email}</p>
         </div>
